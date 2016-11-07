@@ -1,3 +1,5 @@
+// Native implementation without sparse matrix
+
 #include <iostream>
 #include <vector>
 #include <set>
