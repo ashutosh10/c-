@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 
 
@@ -72,6 +73,7 @@ public:
             cout << iterator->data << ' ';
             iterator = iterator->next;
         }
+        cout << endl;
     }
 
 
@@ -80,14 +82,18 @@ public:
         if(head == nullptr or head->next == nullptr)
             return;
 
-        Node * previous = head;
-        Node * current = previous->next;
-        Node * next = current->next;
+        Node * previous = nullptr;
+        Node * current = head;
+        Node * next;
 
-        while(next != nullptr)
+        while(current != nullptr)
         {
-            
+	    next = current->next;
+            current->next = previous;
+	    previous = current;
+            current = next;
         }
+        head = previous;
     }
 };
 
@@ -108,5 +114,7 @@ int main()
 
     //cout << "Size of list : " << aList.size() << endl;
  
+    aList.display();
+    aList.reverse();
     aList.display();
 }
